@@ -14,11 +14,13 @@
 #include <fstream>
 
 enum SceneNodeType {
-	GEOMETRY, POINT_LIGHT, SPOT_LIGHT
+	GEOMETRY, POINT_LIGHT, SPOT_LIGHT, GEOMETRY_2D, NORMAL_MAPPED, DISCOBALL, SKYBOX, DIRECTIONAL_LIGHT, WATER, GRASS, BOAT
 };
 
 struct SceneNode {
+	SceneNode* parent;
 	SceneNode() {
+		parent = nullptr;
 		position = glm::vec3(0, 0, 0);
 		rotation = glm::vec3(0, 0, 0);
 		scale = glm::vec3(1, 1, 1);
@@ -41,7 +43,12 @@ struct SceneNode {
 	glm::vec3 scale;
 
 	// A transformation matrix representing the transformation of the node's location relative to its parent. This matrix is updated every frame.
-	glm::mat4 currentTransformationMatrix;
+	//lm::mat4 currentTransformationMatrix;
+	glm::mat4 currentModelMatrix;
+	//glm::mat4 currentMVPMatrix;
+
+	
+
 
 	// The location of the node's reference point
 	glm::vec3 referencePoint;
@@ -52,6 +59,20 @@ struct SceneNode {
 
 	// Node type is used to determine how to handle the contents of a node
 	SceneNodeType nodeType;
+	//definer lyskilder
+	int lightID;
+	glm::vec3 lightColor;
+	float lightIntensity;
+
+	//felter for struktur
+	unsigned int textureID;
+	unsigned int normalMapID;
+	unsigned int diffuseID;
+	unsigned int roughnessID;
+	//light direction
+	glm::vec3 lightDirection;
+
+	
 };
 
 SceneNode* createSceneNode();

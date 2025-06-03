@@ -8,6 +8,7 @@ SceneNode* createSceneNode() {
 // Add a child node to its parent's list of children
 void addChild(SceneNode* parent, SceneNode* child) {
 	parent->children.push_back(child);
+	child->parent = parent;
 }
 
 int totalChildren(SceneNode* parent) {

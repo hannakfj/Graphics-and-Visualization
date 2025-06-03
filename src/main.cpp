@@ -91,15 +91,11 @@ int main(int argc, const char* argb[])
         return 0;
     }
 
-    CommandLineOptions options;
-    options.enableMusic    = enableMusic.value();
-    options.enableAutoplay = enableAutoplay.value();
-
     // Initialise window using GLFW
     GLFWwindow* window = initialise();
 
     // Run an OpenGL application using this window
-    runProgram(window, options);
+    runProgram(window);
 
     // Terminate GLFW (no need to call glfwDestroyWindow)
     glfwTerminate();
